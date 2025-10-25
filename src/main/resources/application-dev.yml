@@ -2,14 +2,6 @@ spring:
   application:
     name: config-server # 이름을 config-server로 해야 Eureka가 Config server 취급함
 
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/nhnacademy-be11-1/chaekmate-config-repo.git
-          username: ${GIT_USERNAME}
-          password: ${GIT_PASSWORD} #또는 personal access token 사용가능
-
 eureka:
   client:
     register-with-eureka: true   # Eureka에 자기 등록
