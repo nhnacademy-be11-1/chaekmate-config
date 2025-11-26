@@ -84,4 +84,4 @@ jobs:
           script: |
             export DOMAIN_NAME="${{ secrets.DOMAIN_NAME }}"
             export PORT_NUMBER="${{ secrets.PORT_NUMBER }}"
-            bash -lc ./startup.sh
+            bash -lc ./startup-single.sh
