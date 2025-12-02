@@ -1,3 +1,6 @@
+server:
+  port: ${PORT_NUMBER}
+
 spring:
   cloud:
     config:
