@@ -1,4 +1,4 @@
-name: Config CI-CD with Maven
+name: Core CI-CD with Maven
 
 on:
   push:
@@ -12,8 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      SPRING_PROFILES_ACTIVE: prod
       DOMAIN_NAME: ${{ secrets.DOMAIN_NAME }}
       PORT_NUMBER: ${{ secrets.PORT_NUMBER }}
+      CONFIG_REPO_URL: ${{ secrets.CONFIG_REPO_URL }}
+      GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+      GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+      EUREKA_URL_PROD: ${{ secrets.EUREKA_URL_PROD }}
 
     steps:
       # Step.1 코드 체크아웃
@@ -50,7 +55,8 @@ jobs:
             -Dsonar.projectKey=chaekmate-config \
             -Dsonar.projectName="chaekmate-config" \
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}\
+            -Dsonar.coverage.jacoco.xmlReportPaths=api/target/site/jacoco/jacoco.xml
 
       # Step.6 JAR 파일 이름 변경
       - name: Rename JAR File
@@ -84,4 +90,9 @@ jobs:
           script: |
             export DOMAIN_NAME="${{ secrets.DOMAIN_NAME }}"
             export PORT_NUMBER="${{ secrets.PORT_NUMBER }}"
+            export EUREKA_URL_PROD="${{ secrets.EUREKA_URL_PROD }}"
+            export CONFIG_REPO_URL="${{ secrets.CONFIG_REPO_URL }}"
+            export GIT_USERNAME="${{ secrets.GIT_USERNAME }}"
+            export GIT_PASSWORD="${{ secrets.GIT_PASSWORD }}"
+            
             bash -lc ./startup-single.sh
