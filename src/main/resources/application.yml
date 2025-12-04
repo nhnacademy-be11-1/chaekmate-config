@@ -19,3 +19,23 @@ eureka:
   client:
     register-with-eureka: true   # Eureka에 자기 등록
     fetch-registry: true         # 다른 서비스 레지스트리 정보 가져오기
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+  metrics:
+    enable:
+      all: true
+  tracing:
+    enabled: true
+
+info:
+  instanceId: ${spring.application.name}:${server.port}

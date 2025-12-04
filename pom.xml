@@ -50,6 +50,12 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!-- actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- 로그 중앙화 -->
         <dependency>
             <groupId>net.logstash.logback</groupId>
