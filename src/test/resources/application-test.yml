@@ -1,0 +1,44 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${CONFIG_REPO_URL}
+          username: ${GIT_USERNAME}
+          password: ${GIT_PASSWORD} #또는 personal access token 사용가능
+          clone-on-start: true
+          default-label: main
+
+  application:
+    name: chaekmate-config
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+  metrics:
+    enable:
+      all: true
+  tracing:
+    enabled: true
+
+info:
+  instanceId: ${spring.application.name}:${server.port}
+
+
+# Eureka Client 비활성화
+eureka:
+  client:
+    enabled: false  # Spring Boot 3.x 기준
+    register-with-eureka: false
+    fetch-registry: false

@@ -1,0 +1,14 @@
+server:
+  port: ${PORT_NUMBER}
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL_PROD}
